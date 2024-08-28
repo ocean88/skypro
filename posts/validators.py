@@ -9,3 +9,4 @@ def validate_title(value):
             raise ValidationError(
                 "Заголовок содержит бранные слова: %(words)s"
             )
+

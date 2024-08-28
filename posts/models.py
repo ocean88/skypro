@@ -1,11 +1,9 @@
 from django.db import models
 from users.models import User
-from posts.validators import validate_title
-from users.validators import validate_author_age
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=255, validators=[validate_title] )
+    title = models.CharField(max_length=255)
     text = models.TextField()
     image = models.ImageField(upload_to='post_images/', blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -13,17 +11,14 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def save(self, *args, **kwargs):
-        # Валидация возраста автора
-        validate_author_age(self.author.date_of_birth)
-        super(Post, self).save(*args, **kwargs)
-
     def __str__(self):
         return f'(self.title)'
     
+
     class Meta:
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
+
 
 class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)

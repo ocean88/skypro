@@ -2,7 +2,7 @@ from rest_framework.routers import DefaultRouter
 from posts.apps import PostsConfig
 from .views import PostViewSet, CommentViewSet
 
-app_name = PostsConfig.name
+app_name = 'posts'
 
 router = DefaultRouter()
 router.register(r'posts', PostViewSet, basename='posts')

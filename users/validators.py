@@ -26,9 +26,6 @@ def validate_email_domain(value):
 
 def validate_author_age(value):
     today = date.today()
-    age = today.year - value.year - (( today.month, today.day) < (value.month, value.day))
+    age = today.year - value.year - ((today.month, today.day) < (value.month, value.day))
     if age < 18:
-        raise ValidationError(
-            "Автор должен быть старше 18 лет, чтобы публиковать посты"
-        )
-    
+        raise ValidationError("Автор должен быть старше 18 лет, чтобы публиковать посты")
