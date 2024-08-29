@@ -2,11 +2,11 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
+
 # Модель User авторизация через Email
 class User(AbstractUser):
     username = None
     email = models.EmailField(unique=True, verbose_name="Email")
-    password = models.CharField(max_length=128)
     number = models.CharField(max_length=20, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
